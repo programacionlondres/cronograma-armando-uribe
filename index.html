@@ -84,12 +84,10 @@ h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif; text-
 
 /* ---------- header ---------- */
 .topbar{
-  position:sticky; top:env(safe-area-inset-top,0px);
   background:var(--bg);
   padding-block:14px 10px;
   border-bottom:1px solid var(--line);
   margin-inline:-16px; padding-inline:16px;
-  z-index:5;
 }
 .eyebrow{
   font-family:"IBM Plex Mono",monospace;
@@ -182,7 +180,7 @@ h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif; text-
 
 /* ---------- gantt view ---------- */
 .gantt-sticky{
-  position:sticky; z-index:4; background:var(--bg);
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:4; background:var(--bg);
 }
 .gantt-legend{
   display:flex; gap:14px; flex-wrap:wrap; font-size:11px; color:var(--ink-soft);
@@ -245,7 +243,7 @@ h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif; text-
 .dep-arrow{fill:var(--ink-faint); opacity:.55;}
 
 /* ---------- history view ---------- */
-.hist-sticky{position:sticky; z-index:4; background:var(--bg);}
+.hist-sticky{position:sticky; top:env(safe-area-inset-top,0px); z-index:4; background:var(--bg);}
 .history-toolbar{display:flex; flex-direction:column; gap:8px; padding-block:12px 10px;}
 .hist-add-btn{
   align-self:flex-start; font-size:12.5px; font-weight:500; color:var(--accent);
@@ -890,11 +888,8 @@ footer{margin-top:28px; text-align:center; font-size:11px; color:var(--ink-faint
     }
   }
   function pinStickyBelowTopbar(stickyId){
-    var stickyEl = document.getElementById(stickyId);
-    var topbarEl = document.querySelector(".topbar");
-    if(stickyEl && topbarEl){
-      stickyEl.style.top = "calc(env(safe-area-inset-top,0px) + " + topbarEl.offsetHeight + "px)";
-    }
+    // topbar now scrolls away with the page (not sticky), so the gantt/history
+    // sticky header just pins to the top of the viewport via CSS -- nothing to do here.
   }
 
   // ---------- historial (weekly status log) ----------
